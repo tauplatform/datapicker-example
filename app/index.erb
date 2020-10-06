@@ -1,0 +1,27 @@
+<div class="container-fluid">
+
+
+  <div class="row">
+    <div class="col-xs-12" style="margin-top: 2em;">
+      <input class="datepicker" data-provide="datepicker">
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+  $().ready(function(){
+      console.log("document ready")
+      $('.datepicker').datepicker().on('changeDate', function(e) {
+         console.log('data has been changed', e);
+          $.ajax({
+              type: 'POST',
+              dataType: 'json',
+              url: '/app/Foo/changedate',
+              data: {date: e.date.toJSON()}
+          });
+
+      });
+  })
+</script>
